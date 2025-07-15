@@ -1,42 +1,53 @@
-import {createContext, useState, useContext, useEffect} from "react"
+import { createContext, useState, useContext, useEffect } from "react";
 
-const MovieContext = createContext()
+const MovieContext = createContext();
 
-export const useMovieContext = () => useContext(MovieContext)
+export const useMovieContext = () => useContext(MovieContext);
 
-export const MovieProvider = ({children}) => {
-    const [favorites, setFavorites] = useState([])
+export const MovieProvider = ({ children }) => {
+  const [favorites, setFavorites] = useState([]);
+  const [loaded, setLoaded] = useState(false); 
 
-    useEffect(() => {
-        const storedFavs = localStorage.getItem("favorites")
-
-        if (storedFavs) setFavorites(JSON.parse(storedFavs))
-    }, [])
-
-    useEffect(() => {
-        localStorage.setItem('favorites', JSON.stringify(favorites))
-    }, [favorites])
-
-    const addToFavorites = (movie) => {
-        setFavorites(prev => [...prev, movie])
+  useEffect(() => {
+    const storedFavs = localStorage.getItem("favorites");
+    if (storedFavs) {
+      try {
+        setFavorites(JSON.parse(storedFavs));
+      } catch (e) {
+        console.error("Invalid favorites in localStorage", e);
+      }
     }
+    setLoaded(true); 
+  }, []);
 
-    const removeFromFavorites = (movieId) => {
-        setFavorites(prev => prev.filter(movie => movie.id !== movieId))
+  useEffect(() => {
+    if (loaded) {
+      localStorage.setItem("favorites", JSON.stringify(favorites));
     }
-    
-    const isFavorite = (movieId) => {
-        return favorites.some(movie => movie.id === movieId)
-    }
+  }, [favorites, loaded]);
 
-    const value = {
-        favorites,
-        addToFavorites,
-        removeFromFavorites,
-        isFavorite
-    }
+  const addToFavorites = (movie) => {
+    setFavorites((prev) => {
+      if (prev.some((m) => m.id === movie.id)) return prev;
+      return [...prev, movie];
+    });
+  };
 
-    return <MovieContext.Provider value={value}>
-        {children}
-    </MovieContext.Provider>
-}
+  const removeFromFavorites = (movieId) => {
+    setFavorites((prev) => prev.filter((movie) => movie.id !== movieId));
+  };
+
+  const isFavorite = (movieId) => {
+    return favorites.some((movie) => movie.id === movieId);
+  };
+
+  const value = {
+    favorites,
+    addToFavorites,
+    removeFromFavorites,
+    isFavorite,
+    loaded,
+  };
+
+  return <MovieContext.Provider value={value}>{children}</MovieContext.Provider>;
+};
