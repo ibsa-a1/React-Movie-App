@@ -52,7 +52,7 @@
   box-sizing: border-box;
 }
 
-@media (max-width: 639px) {
+@media (max-width: 900px) {
   .home {
     padding: 1rem 0;
   }
