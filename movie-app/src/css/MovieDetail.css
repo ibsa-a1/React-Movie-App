@@ -1,0 +1,27 @@
+.my-swal-popup {
+  background-color: #222;
+  color: #fff;
+  border-radius: 12px;
+  font-family: "Poppins", sans-serif;
+}
+
+.my-swal-title {
+  font-size: 1.6rem;
+  color: #ffcc00;
+}
+
+.my-swal-button {
+  background-color: #ff0055 !important;
+  color: white;
+  border: none;
+}
+
+.swal-overview {
+  font-size: 1rem;
+  margin: 10px 0;
+}
+
+.swal-label {
+  font-weight: bold;
+  color: #ddd;
+}

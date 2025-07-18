@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/MovieCard.css";
+import "../css/MovieDetail.css";
 import { useMovieContext } from "../contexts/MovieContext";
 import fallbackImage from "../assets/placeholder.png";
 import Swal from "sweetalert2";
@@ -19,12 +20,23 @@ function MovieCard({ movie }) {
 
     Swal.fire({
       title: movie.title,
-      text: movie.overview,
+      html: `
+       <p class="swal-overview">${movie.overview}</p>
+       <p><span class="swal-label">Release:</span> ${movie.release_date}</p>
+       <p><span class="swal-label">Rating:</span> ⭐ ${movie.vote_average.toFixed(
+         1
+       )}</p>
+      `,
       imageUrl: movie.poster_path
         ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
         : fallbackImage,
-      imageAlt: movie.title,
+      customClass: {
+        popup: "my-swal-popup",
+        title: "my-swal-title",
+        confirmButton: "my-swal-button",
+      },
       showConfirmButton: false,
+      showCloseButton: true,
     });
   }
 
@@ -38,7 +50,7 @@ function MovieCard({ movie }) {
               : fallbackImage
           }
           alt={movie.title}
-          style={{ cursor: "pointer" }}
+          // style={{ cursor: "pointer" }}
           onError={({ target }) => {
             target.onerror = null;
             target.src = fallbackImage;
