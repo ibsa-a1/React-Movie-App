@@ -2,6 +2,7 @@ import React from "react";
 import "../css/MovieCard.css";
 import { useMovieContext } from "../contexts/MovieContext";
 import fallbackImage from "../assets/placeholder.png";
+import Swal from "sweetalert2";
 
 function MovieCard({ movie }) {
   const { isFavorite, addToFavorites, removeFromFavorites } = useMovieContext();
@@ -13,9 +14,23 @@ function MovieCard({ movie }) {
     else addToFavorites(movie);
   }
 
+  function showMovieDetails() {
+    console.log("Clicked:", movie.title);
+
+    Swal.fire({
+      title: movie.title,
+      text: movie.overview,
+      imageUrl: movie.poster_path
+        ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+        : fallbackImage,
+      imageAlt: movie.title,
+      showConfirmButton: false,
+    });
+  }
+
   return (
     <div className="movie-card">
-      <div className="movie-poster">
+      <div onClick={showMovieDetails} className="movie-poster">
         <img
           src={
             movie.poster_path
@@ -23,6 +38,7 @@ function MovieCard({ movie }) {
               : fallbackImage
           }
           alt={movie.title}
+          style={{ cursor: "pointer" }}
           onError={({ target }) => {
             target.onerror = null;
             target.src = fallbackImage;
