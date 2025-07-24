@@ -16,33 +16,60 @@ function MovieCard({ movie }) {
   }
 
   function showMovieDetails() {
-    console.log("Clicked:", movie.title);
+    const backgroundImage = movie.poster_path
+      ? `https://image.tmdb.org/t/p/original/${movie.poster_path}`
+      : fallbackImage;
 
     Swal.fire({
-      title: movie.title,
       html: `
-       <p class="swal-overview">${movie.overview}</p>
-       <p><span class="swal-label">Release:</span> ${movie.release_date}</p>
-       <p><span class="swal-label">Rating:</span> ⭐ ${movie.vote_average.toFixed(
-         1
-       )}</p>
+        <div class="popup-container">
+          <div class="popup-overlay"></div>
+          <div class="popup-content">
+            <div class="popup-left">
+              <h2 class="popup-title">${movie.title}</h2>
+              <p><strong>Release:</strong> ${
+                movie.release_date?.split("-")[0]
+              }</p>
+              <p><strong>Rating:</strong> ⭐ ${movie.vote_average.toFixed(
+                1
+              )}</p>
+            </div>
+            <div class="popup-right">
+              <p class="popup-overview">${movie.overview}</p>
+            </div>
+          </div>
+        </div>
       `,
-      imageUrl: movie.poster_path
-        ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-        : fallbackImage,
+      showConfirmButton: true,
+      confirmButtonText: "Close",
       customClass: {
-        popup: "my-swal-popup",
-        title: "my-swal-title",
-        confirmButton: "my-swal-button",
+        popup: "fullscreen-popup",
+        confirmButton: "popup-close-btn",
       },
-      showConfirmButton: false,
-      showCloseButton: true,
+      background: "transparent",
+      width: "90vw",
+      padding: 0,
     });
+
+    // Dynamically set the background image after popup loads
+    setTimeout(() => {
+      const container = document.querySelector(".popup-container");
+      if (container) {
+        container.style.backgroundImage = `
+          linear-gradient(to right, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.5)), 
+          url('${backgroundImage}')
+        `;
+      }
+    }, 0);
   }
 
   return (
     <div className="movie-card">
-      <div onClick={showMovieDetails} className="movie-poster">
+      <div
+        onClick={showMovieDetails}
+        className="movie-poster"
+        style={{ cursor: "pointer" }}
+      >
         <img
           src={
             movie.poster_path
@@ -50,7 +77,6 @@ function MovieCard({ movie }) {
               : fallbackImage
           }
           alt={movie.title}
-          // style={{ cursor: "pointer" }}
           onError={({ target }) => {
             target.onerror = null;
             target.src = fallbackImage;
