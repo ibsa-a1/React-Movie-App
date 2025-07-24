@@ -57,7 +57,9 @@
 }
 
 .popup-overview {
-  font-family: "Inter", "Roboto", "OpenSans", sans-serif;
+  font-family: "Poppins", "Inter", "Open Sans", sans-serif;
+  letter-spacing: 0.3px;
+  margin: auto;
   font-size: 16px;
   line-height: 1.6;
 }
