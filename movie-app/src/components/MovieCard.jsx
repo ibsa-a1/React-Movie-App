@@ -16,8 +16,8 @@ function MovieCard({ movie }) {
   }
 
   function showMovieDetails() {
-    const backgroundImage = movie.poster_path
-      ? `https://image.tmdb.org/t/p/original/${movie.poster_path}`
+    const backgroundImage = movie.backdrop_path
+      ? `https://image.tmdb.org/t/p/w1280/${movie.backdrop_path}`
       : fallbackImage;
 
     Swal.fire({
