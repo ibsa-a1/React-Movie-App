@@ -42,12 +42,12 @@ function MovieCard({ movie }) {
         </div>
       `,
       showConfirmButton: true,
-      confirmButtonText: "Close",
+      confirmButtonText: "X",
       customClass: {
         popup: "fullscreen-popup",
         confirmButton: "popup-close-btn",
       },
-      background: "transparent",
+      background: "none",
       width: "90vw",
       padding: 0,
     });

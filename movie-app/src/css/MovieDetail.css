@@ -65,14 +65,22 @@
 }
 
 .popup-close-btn {
-  background-color: #e50914 !important;
+  background-color: #2c2323ff;
   color: #fff !important;
   font-weight: bold;
+  font-size: 1.5rem;
+  margin: 30px 15px;
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 0;
+  border: none;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  transition: 0.3s;
+  top: 3px;
+  right: 15px;
+}
+.popup-close-btn:hover {
+  transform: scale(1.1);
+  background-color: #e50914;
 }
 
 @media (max-width: 768px) {
