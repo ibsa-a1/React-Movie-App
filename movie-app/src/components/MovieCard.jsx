@@ -23,7 +23,7 @@ function MovieCard({ movie }) {
     Swal.fire({
       html: `
         <div class="popup-container">
-          <div class="popup-overlay"></div>
+          <div class="popup-overlay">
           <div class="popup-content">
             <div class="popup-left">
               <h2 class="popup-title">${movie.title}</h2>
@@ -37,6 +37,7 @@ function MovieCard({ movie }) {
             <div class="popup-right">
               <p class="popup-overview">${movie.overview}</p>
             </div>
+          </div>
           </div>
         </div>
       `,
