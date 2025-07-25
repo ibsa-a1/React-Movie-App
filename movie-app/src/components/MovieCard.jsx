@@ -11,6 +11,7 @@ function MovieCard({ movie }) {
 
   function onFavoriteClick(e) {
     e.preventDefault();
+    e.stopPropagation();
     if (favorite) removeFromFavorites(movie.id);
     else addToFavorites(movie);
   }
