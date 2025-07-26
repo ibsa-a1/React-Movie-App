@@ -3,12 +3,6 @@
 
 <img width="366" height="792" alt="image" src="https://github.com/user-attachments/assets/b8ab1579-97da-4777-983e-28dc544c3527" />
 <img width="372" height="805" alt="image" src="https://github.com/user-attachments/assets/6185992e-fd56-44cc-8c05-c345a9d7e09a" />
-<img width="321" height="749" alt="image" src="https://github.com/user-attachments/assets/08f0e8d2-0243-441f-8582-9e4848ca6059" />
-
-
-
-
-
 
 A fully responsive and clean Movie Explorer App built with **Vite + ReactJS** and powered by the **TMDB API**. It fetches and displays movies live with poster images, titles, release dates, and ratings. Click any movie to view its overview in a detail view. You can also add favorites and navigate with smooth routing.
 
