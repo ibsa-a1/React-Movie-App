@@ -78,3 +78,5 @@ Visit `http://localhost:5173` in your browser to view the app.
 
 Made with ❤️ by **Ibsa Abera**  
 GitHub: [@ibsa-a1](https://github.com/ibsa-a1)
+
+⭐ **If you like this project, consider giving it a star on GitHub and share it — it really helps!**
