@@ -54,6 +54,7 @@
 .popup-right {
   width: 55%;
   overflow-y: auto;
+  margin-right: auto;
 }
 
 .popup-overview {

@@ -28,9 +28,7 @@ function MovieCard({ movie }) {
           <div class="popup-content">
             <div class="popup-left">
               <h2 class="popup-title">${movie.title}</h2>
-              <p><strong>Release:</strong> ${
-                movie.release_date?.split("-")[0]
-              }</p>
+              <p><strong>Release Date:</strong> ${movie.release_date}</p>
               <p><strong>Rating:</strong> ⭐ ${movie.vote_average.toFixed(
                 1
               )}</p>
