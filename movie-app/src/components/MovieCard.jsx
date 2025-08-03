@@ -70,9 +70,10 @@ function MovieCard({ movie }) {
       didOpen: () => {
         const playBtn = document.getElementById("play-trailer");
         if (playBtn) {
-          playBtn.addEventListener("click", () => {
-            const trailer = showMovieTrailers();
-            if (trailer) {
+          playBtn.addEventListener("click", async () => {
+            const trailer = await showMovieTrailers(movie.id);
+
+            if (trailer && trailer.key) {
               window.open(
                 `https://www.youtube.com/watch?v=${trailer.key}`,
                 "_blank"
