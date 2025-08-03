@@ -7,7 +7,7 @@
   top: 0 !important;
   left: 0 !important;
   transform: none !important;
-  width: 100vw !important;
+  width: 97vw !important;
   height: 100vh !important;
   margin: 0 !important;
   padding: 0 !important;
@@ -163,5 +163,10 @@
   }
   .video-container iframe {
     width: 85vw;
+  }
+  .fullscreen-popup.swal2-popup {
+    width: 92vw !important;
+    height: 95vh !important;
+    margin-right: 20px;
   }
 }
