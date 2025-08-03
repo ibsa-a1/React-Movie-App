@@ -42,19 +42,20 @@ function MovieCard({ movie }) {
       html: `
         <div class="popup-container">
           <div class="popup-overlay">
-          <div class="popup-content">
-            <div class="popup-left">
-              <h2 class="popup-title">${movie.title}</h2>
-              <p><strong>Release Date:</strong> ${movie.release_date}</p>
-              <p><strong>Rating:</strong> ⭐ ${movie.vote_average.toFixed(
-                1
-              )}</p>
+            <div class="popup-content">
+              <div class="popup-left">
+                <h2 class="popup-title">${movie.title}</h2>
+                <p><strong>Release Date:</strong> ${movie.release_date}</p>
+                <p><strong>Rating:</strong> ⭐ ${movie.vote_average.toFixed(
+                  1
+                )}</p>
+              </div>
+              <div class="popup-right">
+                <p class="popup-overview">${movie.overview}</p>
+                <button id="play-trailer" class="play-trailer">▶️ Play Trailer</button>
+                <div id="youtube-player" class="youtube-wrapper" style="margin-top: 1rem;"></div>
+              </div>
             </div>
-            <div class="popup-right">
-              <p class="popup-overview">${movie.overview}</p>
-              <button id="play-trailer" class="play-trailer">▶️ Play Trailer</button>
-            </div>
-          </div>
           </div>
         </div>
       `,
@@ -69,15 +70,26 @@ function MovieCard({ movie }) {
       padding: 0,
       didOpen: () => {
         const playBtn = document.getElementById("play-trailer");
-        if (playBtn) {
+        const playerContainer = document.getElementById("youtube-player");
+
+        if (playBtn && playerContainer) {
           playBtn.addEventListener("click", async () => {
             const trailer = await showMovieTrailers(movie.id);
 
             if (trailer && trailer.key) {
-              window.open(
-                `https://www.youtube.com/watch?v=${trailer.key}`,
-                "_blank"
-              );
+              playerContainer.innerHTML = `
+                <div class="video-container">
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src="https://www.youtube.com/embed/${trailer.key}?autoplay=1"
+                    frameborder="0"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              `;
+              playBtn.style.display = "none"; // hide the button while and after playing
             } else {
               Swal.fire("No trailer found");
             }
@@ -91,7 +103,7 @@ function MovieCard({ movie }) {
       const container = document.querySelector(".popup-container");
       if (container) {
         container.style.backgroundImage = `
-          linear-gradient(to right, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.5)), 
+          linear-gradient(to right, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.5)),
           url('${backgroundImage}')
         `;
       }
