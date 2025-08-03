@@ -18,7 +18,8 @@ A fully responsive and clean Movie Explorer App built with **Vite + ReactJS** an
 - 📖 Click a movie to see a **beautiful detailed overview**  
 - 🔀 **React Router integration** for smooth navigation  
 - 📱 **Fully responsive** on all screen sizes  
-- ⚡ Built with **Vite** for lightning-fast performance  
+- ⚡ Built with **Vite** for lightning-fast performance
+- 🎬 More detailed movie info and trailers Integrated
 
 ---
 
@@ -66,8 +67,7 @@ Visit `http://localhost:5173` in your browser to view the app.
 
 - 🌈 Refactor styling with **TailwindCSS**  
 - 🧠 Add **genre-based filtering** and **search enhancements**  
-- 🔐 Add **authentication** for user-specific favorites  
-- 🎬 Integrate more detailed movie info and trailers  
+- 🔐 Add **authentication** for user-specific favorites    
 - 🪄 Enhance UI/UX with **Framer Motion**  
 
 ---
