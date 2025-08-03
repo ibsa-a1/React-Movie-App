@@ -52,7 +52,7 @@ function MovieCard({ movie }) {
             </div>
             <div class="popup-right">
               <p class="popup-overview">${movie.overview}</p>
-              <button id="play-trailer">Play Trailer</button>
+              <button id="play-trailer" class="play-trailer">Play Trailer</button>
             </div>
           </div>
           </div>

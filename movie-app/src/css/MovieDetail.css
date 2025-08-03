@@ -65,6 +65,11 @@
   line-height: 1.6;
 }
 
+.play-trailer {
+  background: #dadae5ff;
+  color: #333;
+}
+
 .popup-close-btn {
   background-color: #2c2323ff;
   color: #fff !important;
