@@ -16,12 +16,19 @@ function MovieCard({ movie }) {
     else addToFavorites(movie);
   }
 
-  function showMovieTrailers() {
-    const trailer = videoData.results.find(
-      (video) => video.type === "Trailer" && video.site === "YouTube"
-    );
-
-    return trailer;
+  async function fetchTrailer(movieId) {
+    try {
+      const res = await fetch(
+        `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${API_KEY}`
+      );
+      const data = await res.json();
+      return data.results.find(
+        (video) => video.type === "Trailer" && video.site === "YouTube"
+      );
+    } catch (error) {
+      console.error("Error fetching trailer:", error);
+      return null;
+    }
   }
 
   function showMovieDetails() {
@@ -43,6 +50,7 @@ function MovieCard({ movie }) {
             </div>
             <div class="popup-right">
               <p class="popup-overview">${movie.overview}</p>
+              <button id="play-trailer">Play Trailer</button>
             </div>
           </div>
           </div>
@@ -57,6 +65,22 @@ function MovieCard({ movie }) {
       background: "none",
       width: "90vw",
       padding: 0,
+      didOpen: () => {
+        const playBtn = document.getElementById("play-trailer");
+        if (playBtn) {
+          playBtn.addEventListener("click", () => {
+            const trailer = showMovieTrailers();
+            if (trailer) {
+              window.open(
+                `https://www.youtube.com/watch?v=${trailer.key}`,
+                "_blank"
+              );
+            } else {
+              Swal.fire("No trailer found");
+            }
+          });
+        }
+      },
     });
 
     // Dynamically set the background image after popup loads
