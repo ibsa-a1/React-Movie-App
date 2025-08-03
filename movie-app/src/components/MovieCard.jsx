@@ -16,7 +16,7 @@ function MovieCard({ movie }) {
     else addToFavorites(movie);
   }
 
-  async function fetchTrailer(movieId) {
+  async function showMovieTrailers(movieId) {
     try {
       const res = await fetch(
         `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${API_KEY}`
