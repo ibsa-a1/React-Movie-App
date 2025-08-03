@@ -161,4 +161,7 @@
     margin: 25px 12px;
     padding: 7px 15px;
   }
+  .video-container iframe {
+    width: 85vw;
+  }
 }
