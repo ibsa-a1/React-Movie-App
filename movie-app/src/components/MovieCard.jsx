@@ -16,6 +16,14 @@ function MovieCard({ movie }) {
     else addToFavorites(movie);
   }
 
+  function showMovieTrailers() {
+    const trailer = videoData.results.find(
+      (video) => video.type === "Trailer" && video.site === "YouTube"
+    );
+
+    return trailer;
+  }
+
   function showMovieDetails() {
     const backgroundImage = movie.backdrop_path
       ? `https://image.tmdb.org/t/p/w1280/${movie.backdrop_path}`
