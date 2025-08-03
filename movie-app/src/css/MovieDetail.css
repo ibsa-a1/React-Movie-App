@@ -160,9 +160,11 @@
     font-size: 1rem;
     margin: 25px 12px;
     padding: 7px 15px;
+    top: 2px;
+    right: 7px;
   }
   .video-container iframe {
-    width: 85vw;
+    width: 78vw;
   }
   .fullscreen-popup.swal2-popup {
     width: 92vw !important;
