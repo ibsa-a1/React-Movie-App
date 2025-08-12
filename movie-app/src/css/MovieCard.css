@@ -141,7 +141,7 @@
 }
 @media (max-width: 410px) {
   .movie-card {
-    width: 71vw;
+    width: 80vw;
     margin-right: auto;
   }
 }
